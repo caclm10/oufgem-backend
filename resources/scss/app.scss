@@ -1,0 +1,17 @@
+@import "./datatables";
+
+td {
+    vertical-align: middle !important;
+}
+
+.space-x {
+    --sx: 0.5rem;
+
+    & > * {
+        margin-left: var(--sx);
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
