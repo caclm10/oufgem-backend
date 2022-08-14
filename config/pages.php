@@ -51,6 +51,30 @@ return [
                 'title' => 'Edit User',
             ]
         ],
+
+        'categories' => [
+            [
+                'title' => 'Categories',
+            ],
+        ],
+        'create-category' => [
+            [
+                'title' => 'Categories',
+                'route' => 'categories.index',
+            ],
+            [
+                'title' => 'Create Category',
+            ]
+        ],
+        'edit-category' => [
+            [
+                'title' => 'Categories',
+                'route' => 'categories.index',
+            ],
+            [
+                'title' => 'Edit Category',
+            ]
+        ],
     ],
 
     'sidebar' => [
@@ -80,6 +104,17 @@ return [
                         'route' => 'users.index',
                         'icon' => 'people-fill',
                         'activeRoute' => 'users.*'
+                    ]
+                ]
+            ],
+            [
+                'title' => 'Products',
+                'items' => [
+                    [
+                        'title' => 'Categories',
+                        'route' => 'categories.index',
+                        'icon' => 'tags-fill',
+                        'activeRoute' => 'categories.*'
                     ]
                 ]
             ]
