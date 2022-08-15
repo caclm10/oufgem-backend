@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 class ModelHelper
@@ -9,6 +10,11 @@ class ModelHelper
     public static function save(Model $model)
     {
         if (!$model->save()) abort(500);
+    }
+
+    public static function saveRelation(Model $model, string $relation = '', Model $child)
+    {
+        if (!$model->{$relation}()->save($child)) abort(500);
     }
 
     public static function destroy(Model $model, string $route = '', string $instanceName = '')

@@ -1,3 +1,3 @@
-<div class="card">
+<div {{ $attributes->class(['card']) }}>
     {{ $slot }}
 </div>

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ModelHelper;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
+use App\Models\CategoryImage;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -32,12 +36,24 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        $input = $request->validated();
+        $name = $input['name'];
+
+        $category = new Category([
+            'name' => $name,
+            'slug' => str($name)->slug()
+        ]);
+
+        CategoryService::save($category, $request);
+
+        flashCreated('Category');
+
+        return to_route('categories.create');
     }
 
     /**
