@@ -18,10 +18,9 @@
                     </div>
 
                     <div class="d-grid">
-                        <x-button.image action="{{ route('categories.update.image', [$category]) }}" target="thumbnail" />
-                        @if ($category->image->url)
-                            <x-button.delete.image class="mt-3 w-100" />
-                        @endif
+                        <x-button.image action="{{ route('categories.images.update', [$category]) }}" target="thumbnail" />
+                        <x-button.delete.image class="mt-3 w-100" :hideFirst="!$category->image->url"
+                            action="{{ route('categories.images.destroy', [$category]) }}" />
                     </div>
                 </x-card.body>
             </x-card>

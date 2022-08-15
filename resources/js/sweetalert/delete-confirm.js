@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const deleteForms = document.querySelectorAll(`[data-delete-form]`)
 
 const deleteSwal = Swal.mixin({
@@ -22,7 +24,18 @@ for (const deleteForm of deleteForms) {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    deleteForm.submit()
+                    if (deleteForm.dataset.deleteImage) {
+                        axios
+                            .post(deleteForm.action, {
+                                _method: 'DELETE'
+                            })
+                            .then(resp => {
+                                document.getElementById(deleteForm.dataset.deleteImage).src = "/images/image-placeholder.png"
+                                deleteForm.classList.add('d-none')
+                            })
+                    } else {
+                        deleteForm.submit()
+                    }
                 }
             })
     })

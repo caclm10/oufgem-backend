@@ -6,18 +6,13 @@ use App\Helpers\FileHelper;
 use App\Helpers\ModelHelper;
 use App\Helpers\RequestHelper;
 use App\Models\Category;
+use App\Models\CategoryImage;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryImageController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Category $category
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request, Category $category)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
             'image' => [
@@ -44,5 +39,13 @@ class CategoryImageController extends Controller
         }
 
         return response()->json(status: 422);
+    }
+
+    public function destroy(Category $category)
+    {
+        $status = 404;
+        if (CategoryService::deleteImage($category)) $status = 200;
+
+        return response()->json(status: $status);
     }
 }

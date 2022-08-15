@@ -29,7 +29,7 @@ class CategoryService
     {
         if ($category) {
             $imageURL = $category->image->url;
-            if (!$category->delete()) abort(500);
+            ModelHelper::delete($category);
 
             FileHelper::deleteFromURL($imageURL);
 
@@ -38,5 +38,20 @@ class CategoryService
         }
 
         return to_route("categories.edit", [$category]);
+    }
+
+    public static function deleteImage(Category $category)
+    {
+        if ($category) {
+            $categoryImage = $category->image;
+            $imageURL = $categoryImage->url;
+            $categoryImage->url = null;
+            ModelHelper::save($categoryImage);
+            FileHelper::deleteFromURL($imageURL);
+
+            return true;
+        }
+
+        return false;
     }
 }

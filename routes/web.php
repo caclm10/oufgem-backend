@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryImageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleDefaultController;
 use App\Http\Controllers\UserController;
+use App\Models\CategoryImage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,14 +23,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('categories/{category}/images')->name('categories.images.')->group(function () {
+    Route::put('', [CategoryImageController::class, 'update'])->name('update');
+    Route::delete('', [CategoryImageController::class, 'destroy'])->name('destroy');
+});
 
-// Route::prefix('roles')->name('roles.')->group(function () {
-//     Route::prefix('{role}')->group(function () {
-
-//     });
-// });
 Route::put('roles/{role}/default', RoleDefaultController::class)->name('roles.update.default');
-Route::put('categories/{category}/image', CategoryImageController::class)->name('categories.update.image');
 
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);

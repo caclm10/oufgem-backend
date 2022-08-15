@@ -41,6 +41,9 @@ for (const imageUpload of imageUploads) {
                 .post(imageUpload.dataset.action, formData)
                 .then(resp => {
                     document.querySelector(`#${imageUpload.dataset.imageTarget}`).src = resp.data.url
+                    const deleteButton = document.querySelector(`[data-delete-image="${imageUpload.dataset.imageTarget}"]`)
+
+                    if (deleteButton) deleteButton.classList.remove('d-none')
                 })
         }
     })

@@ -17,6 +17,11 @@ class ModelHelper
         if (!$model->{$relation}()->save($child)) abort(500);
     }
 
+    public static function delete(Model $model)
+    {
+        if (!$model->delete()) abort(500);
+    }
+
     public static function destroy(Model $model, string $route = '', string $instanceName = '')
     {
         if ($model) {
