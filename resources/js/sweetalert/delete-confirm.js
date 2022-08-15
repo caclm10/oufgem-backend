@@ -7,8 +7,8 @@ const deleteSwal = Swal.mixin({
     },
     buttonsStyling: false,
     showCancelButton: true,
-    confirmButtonText: 'Simpan',
-    cancelButtonText: 'Batal',
+    confirmButtonText: 'Delete',
+    cancelButtonText: 'Cancel',
     icon: 'warning',
     reverseButtons: true
 })

@@ -42,7 +42,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 Swal.fire(
-                    'Good job!',
+                    'Success!',
                     `{{ session('success') }}`,
                     'success'
                 )

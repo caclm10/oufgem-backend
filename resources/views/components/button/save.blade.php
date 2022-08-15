@@ -1,7 +1,7 @@
 @props([
-    'text' => 'Simpan'
+    'text' => 'Save',
 ])
 
 <button {{ $attributes->class(['btn btn-primary'])->merge() }}>
-    {{$text}}
+    {{ $text }}
 </button>
