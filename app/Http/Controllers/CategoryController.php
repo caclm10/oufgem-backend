@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit');
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -87,6 +87,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        return ModelHelper::destroy($category, 'categories', 'Category');
+        return CategoryService::delete($category);
     }
 }

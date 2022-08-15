@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryImageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleDefaultController;
 use App\Http\Controllers\UserController;
@@ -28,7 +29,8 @@ Route::get('/', function () {
 //     });
 // });
 Route::put('roles/{role}/default', RoleDefaultController::class)->name('roles.update.default');
-Route::resource('roles', RoleController::class);
+Route::put('categories/{category}/image', CategoryImageController::class)->name('categories.update.image');
 
+Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);

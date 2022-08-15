@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2'
+import axios from 'axios'
 import './bootstrap'
 import './datatables'
 import './sweetalert'
@@ -21,6 +21,27 @@ for (const imageInput of imageInputsWithPreview) {
             reader.readAsDataURL(file)
         } else {
             preview.src = "/images/image-placeholder.png"
+        }
+    })
+}
+
+const imageUploads = document.querySelectorAll(`[data-image-upload]`)
+
+for (const imageUpload of imageUploads) {
+    imageUpload.addEventListener('change', event => {
+        const image = event.target.files[0]
+
+        if (image) {
+            const formData = new FormData()
+
+            formData.append('image', image)
+            formData.append('_method', 'PUT')
+
+            axios
+                .post(imageUpload.dataset.action, formData)
+                .then(resp => {
+                    document.querySelector(`#${imageUpload.dataset.imageTarget}`).src = resp.data.url
+                })
         }
     })
 }

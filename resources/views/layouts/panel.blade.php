@@ -32,6 +32,7 @@
         </div>
     </div>
 
+    @routes
     @stack('scripts-before')
     <script src="{{ asset('mazer/assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('mazer/assets/js/app.js') }}"></script>

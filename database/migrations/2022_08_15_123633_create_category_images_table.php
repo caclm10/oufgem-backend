@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('category_images', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->string('home_position', 20)->default('center center');
         });
     }
