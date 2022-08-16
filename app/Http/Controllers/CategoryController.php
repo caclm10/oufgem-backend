@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ModelHelper;
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Models\CategoryImage;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\MessageBag;
 
 class CategoryController extends Controller
 {
@@ -70,13 +72,36 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateCategoryRequest  $request
      * @param  Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $input = $request->validated();
+
+        $name = $input['name'];
+        $slug = str($name)->slug();
+
+        if (ModelHelper::isAttributeTaken('categories', 'slug', $slug, $category->id))
+            return customValidate(['name' => 'The name has already been taken']);
+
+        $category->fill([
+            'name' => $name,
+            'slug' => $slug,
+        ]);
+
+        $categoryImage = $category->image;
+        $categoryImage->home_position = $input['image_home_position'];
+
+        DB::transaction(function () use ($categoryImage, $category) {
+            ModelHelper::save($category);
+            ModelHelper::save($categoryImage);
+        });
+
+        flashUpdated('Category');
+
+        return to_route('categories.edit', [$category]);
     }
 
     /**

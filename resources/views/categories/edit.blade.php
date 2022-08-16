@@ -38,7 +38,10 @@
                     <x-form action="{{ route('categories.update', [$category]) }}" spoof="PUT" id="update-category-form">
                         <x-input name="name" label="Name" defaultValue="{{ $category->name }}" />
 
+                        <x-input name="slug" label="Slug" defaultValue="{{ $category->slug }}" disabled />
 
+                        <x-input name="image_home_position" label="Image Home Position"
+                            defaultValue="{{ $category->image->home_position }}" />
                     </x-form>
                 </x-card.body>
             </x-card>
