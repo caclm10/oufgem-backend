@@ -33,11 +33,10 @@ class CategoryService
 
             FileHelper::deleteFromURL($imageURL);
 
-            flashDeleted('Category');
-            return to_route("categories.index");
+            return true;
         }
 
-        return to_route("categories.edit", [$category]);
+        return false;
     }
 
     public static function deleteImage(Category $category)

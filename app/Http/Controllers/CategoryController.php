@@ -112,6 +112,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        return CategoryService::delete($category);
+        if (CategoryService::delete($category)) {
+            flashDeleted('Category');
+
+            return to_route("categories.index");
+        }
+
+        return to_route("categories.edit", [$category]);
     }
 }
