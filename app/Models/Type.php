@@ -11,6 +11,8 @@ class Type extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['name', 'slug', 'category_id'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

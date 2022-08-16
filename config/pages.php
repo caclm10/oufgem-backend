@@ -75,6 +75,30 @@ return [
                 'title' => 'Edit Category',
             ]
         ],
+
+        'types' => [
+            [
+                'title' => 'Types',
+            ],
+        ],
+        'create-type' => [
+            [
+                'title' => 'Types',
+                'route' => 'types.index',
+            ],
+            [
+                'title' => 'Create Type',
+            ]
+        ],
+        'edit-type' => [
+            [
+                'title' => 'Types',
+                'route' => 'types.index',
+            ],
+            [
+                'title' => 'Edit Type',
+            ]
+        ],
     ],
 
     'sidebar' => [
@@ -115,7 +139,13 @@ return [
                         'route' => 'categories.index',
                         'icon' => 'tags-fill',
                         'activeRoute' => 'categories.*'
-                    ]
+                    ],
+                    [
+                        'title' => 'Types',
+                        'route' => 'types.index',
+                        'icon' => 'tags-fill',
+                        'activeRoute' => 'types.*'
+                    ],
                 ]
             ]
         ]

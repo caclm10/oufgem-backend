@@ -4,8 +4,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryImageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleDefaultController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use App\Models\CategoryImage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +33,4 @@ Route::put('roles/{role}/default', RoleDefaultController::class)->name('roles.up
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
+Route::resource('types', TypeController::class);
