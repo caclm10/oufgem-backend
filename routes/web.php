@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryImageController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleDefaultController;
 use App\Http\Controllers\SizeController;
@@ -29,6 +31,11 @@ Route::prefix('categories/{category}/images')->name('categories.images.')->group
     Route::delete('', [CategoryImageController::class, 'destroy'])->name('destroy');
 });
 
+Route::prefix('products/{product}/sizes')->name('products.sizes.')->controller(ProductSizeController::class)->group(function () {
+    Route::post('', 'store')->name('store');
+    Route::put('{size}', 'update')->name('update');
+});
+
 Route::put('roles/{role}/default', RoleDefaultController::class)->name('roles.update.default');
 
 Route::resource('roles', RoleController::class);
@@ -36,3 +43,4 @@ Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('types', TypeController::class);
 Route::resource('sizes', SizeController::class);
+Route::resource('products', ProductController::class);

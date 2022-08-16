@@ -123,6 +123,30 @@ return [
                 'title' => 'Edit Size',
             ]
         ],
+
+        'products' => [
+            [
+                'title' => 'Products',
+            ],
+        ],
+        'create-product' => [
+            [
+                'title' => 'Products',
+                'route' => 'products.index',
+            ],
+            [
+                'title' => 'Create Product',
+            ]
+        ],
+        'edit-product' => [
+            [
+                'title' => 'Products',
+                'route' => 'products.index',
+            ],
+            [
+                'title' => 'Edit Product',
+            ]
+        ],
     ],
 
     'sidebar' => [
@@ -175,6 +199,12 @@ return [
                         'route' => 'sizes.index',
                         'icon' => '1-circle',
                         'activeRoute' => 'sizes.*'
+                    ],
+                    [
+                        'title' => 'Products',
+                        'route' => 'products.index',
+                        'icon' => 'box-fill',
+                        'activeRoute' => 'products.*'
                     ],
                 ]
             ]

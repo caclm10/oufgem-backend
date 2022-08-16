@@ -29,5 +29,20 @@ class CategorySeeder extends Seeder
                 'slug' => str('Outer')->slug(),
             ],
         ]);
+
+        DB::table('category_images')->insert([
+            [
+                'url' => null,
+                'category_id' => 1,
+            ],
+            [
+                'url' => null,
+                'category_id' => 2,
+            ],
+            [
+                'url' => null,
+                'category_id' => 3,
+            ],
+        ]);
     }
 }

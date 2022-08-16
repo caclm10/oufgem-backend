@@ -36,6 +36,8 @@ class ModelHelper
 
     public static function isAttributeTaken(string $table, string $attribute, $value, string|int $ignoreID = null): bool
     {
-        return DB::table($table)->where($attribute, $value)->where('id', '!=', $ignoreID)->exists();
+        $query = DB::table($table)->where($attribute, $value);
+        if ($ignoreID) $query = $query->where('id', '!=', $ignoreID);
+        return $query->exists();
     }
 }
