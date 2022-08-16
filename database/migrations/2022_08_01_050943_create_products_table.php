@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name', 100)->unique();
             $table->longText('description')->nullable();
             $table->unsignedInteger('price')->default(0);
-            $table->unsignedDouble('discount', 5, 2);
+            $table->unsignedDouble('discount', 5, 2)->default(0);
             $table->foreignIdFor(Type::class)->constrained()->cascadeOnDelete();
             $table->string('slug', 100)->unique();
             $table->timestamps();

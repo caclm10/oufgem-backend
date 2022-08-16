@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +24,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'cindyrolexza15@gmail.com',
             'password' => bcrypt('admin'),
             'role_id' => $role->id
+        ]);
+
+        $this->call([
+            CategorySeeder::class,
+            TypeSeeder::class,
+            SizeSeeder::class,
         ]);
     }
 }
