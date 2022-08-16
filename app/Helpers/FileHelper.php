@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FileHelper
 {
-    public static function deleteFromURL(string $url)
+    public static function deleteFromURL(?string $url)
     {
         $file = null;
 

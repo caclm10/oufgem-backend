@@ -42,6 +42,7 @@ for (const imageUpload of imageUploads) {
                 .then(resp => {
                     document.querySelector(`#${imageUpload.dataset.imageTarget}`).src = resp.data.url
                     const deleteButton = document.querySelector(`[data-delete-image="${imageUpload.dataset.imageTarget}"]`)
+                    console.log(deleteButton)
 
                     if (deleteButton) deleteButton.classList.remove('d-none')
                 })
