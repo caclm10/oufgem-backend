@@ -15,6 +15,7 @@
             <x-card.body>
                 <x-form action="{{ route('sizes.store') }}" id="create-size-form">
                     <x-input name="name" label="Name" />
+
                 </x-form>
             </x-card.body>
         </x-card>

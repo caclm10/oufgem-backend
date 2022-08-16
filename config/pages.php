@@ -99,6 +99,30 @@ return [
                 'title' => 'Edit Type',
             ]
         ],
+
+        'sizes' => [
+            [
+                'title' => 'Sizes',
+            ],
+        ],
+        'create-size' => [
+            [
+                'title' => 'Sizes',
+                'route' => 'sizes.index',
+            ],
+            [
+                'title' => 'Create Size',
+            ]
+        ],
+        'edit-size' => [
+            [
+                'title' => 'Sizes',
+                'route' => 'sizes.index',
+            ],
+            [
+                'title' => 'Edit Size',
+            ]
+        ],
     ],
 
     'sidebar' => [
@@ -145,6 +169,12 @@ return [
                         'route' => 'types.index',
                         'icon' => 'tags-fill',
                         'activeRoute' => 'types.*'
+                    ],
+                    [
+                        'title' => 'Sizes',
+                        'route' => 'sizes.index',
+                        'icon' => '1-circle',
+                        'activeRoute' => 'sizes.*'
                     ],
                 ]
             ]
