@@ -41,4 +41,16 @@ class ProductSizeController extends Controller
 
         return to_route('products.edit', [$product]);
     }
+
+    public function destroy(Product $product, Size $size)
+    {
+        $productSize = $product->sizes()->where('size_id', $size->id)->first();
+
+        if ($productSize) {
+            ModelHelper::delete($productSize);
+            flashDeleted('Product size');
+        }
+
+        return to_route('products.edit', [$product]);
+    }
 }

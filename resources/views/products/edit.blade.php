@@ -65,7 +65,7 @@
                 <x-card.body>
                     @foreach ($product->sizes as $size)
                         <div class="row align-items-start mb-3">
-                            <x-form spoof="PUT" action="{{ route('products.sizes.update', [$product, $size]) }}"
+                            <x-form spoof="PUT" action="{{ route('products.sizes.update', [$product, $size->size]) }}"
                                 class="col-10 row align-items-start" id="update-product-size-form-{{ $size->id }}">
                                 <div class="col-7">
                                     <x-input name="size_{{ $size->id }}" defaultValue="{{ $size->size->name }}"
@@ -81,7 +81,8 @@
                                     form="update-product-size-form-{{ $size->id }}">
                                     <i class="bi bi-check2"></i>
                                 </button>
-                                <x-button.delete />
+                                <x-button.delete action="{{ route('products.sizes.destroy', [$product, $size->size]) }}"
+                                    message="Delete this product size?" />
                             </div>
                         </div>
                     @endforeach

@@ -34,6 +34,7 @@ Route::prefix('categories/{category}/images')->name('categories.images.')->group
 Route::prefix('products/{product}/sizes')->name('products.sizes.')->controller(ProductSizeController::class)->group(function () {
     Route::post('', 'store')->name('store');
     Route::put('{size}', 'update')->name('update');
+    Route::delete('{size}', 'destroy')->name('destroy');
 });
 
 Route::put('roles/{role}/default', RoleDefaultController::class)->name('roles.update.default');
