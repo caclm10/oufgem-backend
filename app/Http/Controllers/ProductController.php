@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ModelHelper;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Type;
@@ -91,23 +92,45 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UpdateProductRequest  $request
+     * @param  Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $input = $request->validated();
+        $name = $input['name'];
+
+        $product->fill([
+            'name' => $name,
+            'slug' => str($name)->slug(),
+            'description' => $input['description'],
+            'price' =>  $input['price'] ?: 0,
+            'discount' => $input['discount'] ?: 0,
+            'type_id' => $input['type']
+        ]);
+
+        ModelHelper::save($product);
+
+        flashUpdated('Product');
+
+        return to_route('products.edit', [$product]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        if ($product) {
+            ModelHelper::delete($product);
+            flashDeleted('Product');
+            return to_route('products.index');
+        }
+
+        return to_route('products.edit', [$product]);
     }
 }

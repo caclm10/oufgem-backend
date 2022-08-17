@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueSlugName;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,28 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                'min:4',
+                'max:100',
+                new UniqueSlugName('products', $this->product->id)
+            ],
+            'price' => [
+                'nullable',
+                'numeric',
+                'min:0',
+            ],
+            'discount' => [
+                'nullable',
+                'numeric',
+                'min:0'
+            ],
+            'description' => [
+                'nullable'
+            ],
+            'type' => [
+                'required'
+            ]
         ];
     }
 }
