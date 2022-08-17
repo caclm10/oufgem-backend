@@ -1,1 +1,3 @@
-import './delete-confirm'
+import { runDeleteConfirm } from './delete-confirm'
+
+runDeleteConfirm()
