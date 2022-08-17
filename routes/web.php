@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryImageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductSizeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleDefaultController;
@@ -31,10 +32,24 @@ Route::prefix('categories/{category}/images')->name('categories.images.')->group
     Route::delete('', [CategoryImageController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('products/{product}/sizes')->name('products.sizes.')->controller(ProductSizeController::class)->group(function () {
-    Route::post('', 'store')->name('store');
-    Route::put('{size}', 'update')->name('update');
-    Route::delete('{size}', 'destroy')->name('destroy');
+Route::prefix('products')->name('products.')->group(function () {
+
+    Route::prefix('{product}')->group(function () {
+        Route::prefix('sizes')->name('sizes.')->controller(ProductSizeController::class)->group(function () {
+            Route::post('', 'store')->name('store');
+            Route::put('{size}', 'update')->name('update');
+            Route::delete('{size}', 'destroy')->name('destroy');
+        });
+
+        Route::prefix('images')->name('images.')->controller(ProductImageController::class)->group(function () {
+            Route::post('', 'store')->name('store');
+        });
+    });
+
+    Route::prefix('images')->name('images.')->controller(ProductImageController::class)->group(function () {
+        Route::get('{productImage}', 'show')->name('show');
+        Route::delete('{productImage}', 'destroy')->name('destroy');
+    });
 });
 
 Route::put('roles/{role}/default', RoleDefaultController::class)->name('roles.update.default');

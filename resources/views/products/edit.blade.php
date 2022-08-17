@@ -98,19 +98,20 @@
             </x-card.header>
 
             <x-card.body>
-                <div class="row row-cols-5">
-                    <div class="col position-relative h-250px">
-                        <x-button.delete formClass="thumbnail-1-delete" :outline="false" circle sm />
-                        <img src="{{ asset('images/image-placeholder.png') }}" alt="test"
-                            class="img-thumbnail thumbnail-1">
-                    </div>
-                    <div class="col">
+                <div class="row row-cols-5 gy-4" id="product-image-list">
+                    @foreach ($product->images as $productImage)
+                        @include('partials.products.image-list-item')
+                    @endforeach
+                    <div class="col" style="height:250px;">
                         <label for="product-image"
-                            class="d-flex align-items-center justify-content-center fs-1 border cursor-pointer h-100">+</label>
+                            class="d-flex align-items-center justify-content-center fs-1 border cursor-pointer h-100">
+                            +
+                        </label>
                     </div>
                 </div>
 
-                <input type="file" accept="image/*" class="d-none" id="product-image">
+                <input type="file" accept="image/*" class="d-none" id="product-image"
+                    data-route="{{ route('products.images.store', [$product]) }}">
             </x-card.body>
         </x-card>
     </section>

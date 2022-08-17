@@ -13,25 +13,35 @@ const deleteSwal = Swal.mixin({
     reverseButtons: true
 })
 
-const handleSubmit = event => {
+function handleSubmit(event) {
     event.preventDefault()
 
     deleteSwal.fire({
-        title: deleteForm.dataset.message,
+        title: this.dataset.message,
     })
         .then(result => {
             if (result.isConfirmed) {
-                if (deleteForm.dataset.deleteImage) {
+                if (this.dataset.deleteImage) {
                     axios
-                        .post(deleteForm.action, {
+                        .post(this.action, {
                             _method: 'DELETE'
                         })
                         .then(resp => {
-                            document.getElementById(deleteForm.dataset.deleteImage).src = "/images/image-placeholder.png"
-                            deleteForm.classList.add('d-none')
+                            document.getElementById(this.dataset.deleteImage).src = "/images/image-placeholder.png"
+                            this.classList.add('d-none')
                         })
-                } else {
-                    deleteForm.submit()
+                }
+                else if (this.dataset.deleteMultiImage) {
+                    axios
+                        .post(this.action, {
+                            _method: 'DELETE'
+                        })
+                        .then(resp => {
+                            document.getElementById(this.dataset.deleteMultiImage).remove();
+                        })
+                }
+                else {
+                    this.submit()
                 }
             }
         })

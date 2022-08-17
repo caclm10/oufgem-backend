@@ -15,6 +15,7 @@ class GlobalFunctionsServiceProvider extends ServiceProvider
     {
         require_once base_path() . '/app/Functions/session.php';
         require_once base_path() . '/app/Functions/validation.php';
+        require_once base_path() . '/app/Functions/response.php';
     }
 
     /**

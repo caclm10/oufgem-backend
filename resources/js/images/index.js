@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { removeDeleteConfirmHandler, runDeleteConfirm } from '../sweetalert/delete-confirm'
 
 const imageInputsWithPreview = document.querySelectorAll(`[data-preview-target]`)
 
@@ -43,6 +44,35 @@ for (const imageUpload of imageUploads) {
 
                     if (deleteButton) deleteButton.classList.remove('d-none')
                 })
+        }
+    })
+}
+
+const productImage = document.getElementById(`product-image`)
+
+if (productImage) {
+    productImage.addEventListener('change', async event => {
+        const image = event.target.files[0]
+
+        if (image) {
+            const formData = new FormData()
+
+            formData.append('image', image)
+
+            let resp = await axios.post(productImage.dataset.route, formData)
+
+            resp = await axios.get(resp.headers.location, {
+                params: {
+                    template: '1'
+                }
+            })
+
+            const productImageList = document.getElementById(`product-image-list`)
+            const children = productImageList.children
+            children[children.length - 1].insertAdjacentHTML('beforebegin', resp.data.template)
+
+            removeDeleteConfirmHandler()
+            runDeleteConfirm()
         }
     })
 }

@@ -5,10 +5,11 @@
     'outline' => true,
     'sm' => false,
     'circle' => false,
+    'multiImage' => '',
 ])
 
 <form action="{{ $action }}" method="POST" data-delete-form data-message="{{ $message }}"
-    @class([$formClass])>
+    @if ($multiImage) data-delete-multi-image="{{ $multiImage }}" @endif @class([$formClass])>
     @csrf
     @method('DELETE')
     <button @class([

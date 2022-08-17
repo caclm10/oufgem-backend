@@ -4,13 +4,13 @@ namespace App\Helpers;
 
 class RequestHelper
 {
-    public static function saveImage()
+    public static function saveImage(string $attribute = 'image')
     {
         $request = request();
 
-        $image = $request->file('image');
+        $image = $request->file($attribute);
 
-        if ($request->hasFile('image') && $image->isValid()) {
+        if ($request->hasFile($attribute) && $image->isValid()) {
             $path = $image->store('storage/images');
 
             if ($path) {

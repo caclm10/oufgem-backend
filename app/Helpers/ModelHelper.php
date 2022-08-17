@@ -18,6 +18,11 @@ class ModelHelper
         if (!$model->{$relation}()->save($child)) abort(500);
     }
 
+    public static function createRelation(Model $model, string $relation = '', array $value)
+    {
+        return $model->{$relation}()->create($value);
+    }
+
     public static function delete(Model $model)
     {
         if (!$model->delete()) abort(500);
