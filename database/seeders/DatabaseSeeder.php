@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             TypeSeeder::class,
             SizeSeeder::class,
+            PaymentMethodSeeder::class,
+            EWalletAccountSeeder::class,
+            BankAccountSeeder::class
         ]);
     }
 }
