@@ -27,11 +27,12 @@ class UpdateEWalletAccountRequest extends FormRequest
             'name' => [
                 'required',
                 'min:3',
-                'max: 100'
+                'max:100'
             ],
             'phone_number' => [
                 'required',
-                'numeric'
+                'numeric',
+                'digits_between:9,15'
             ],
             'method' => [
                 'required'

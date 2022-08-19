@@ -13,7 +13,7 @@ class BankAccount extends Model
 
     protected $guarded = ['id'];
 
-    public function method()
+    public function paymentMethod()
     {
         return $this->belongsTo(PaymentMethod::class);
     }

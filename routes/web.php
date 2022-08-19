@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryImageController;
 use App\Http\Controllers\EWalletAccountController;
@@ -64,3 +65,4 @@ Route::resource('sizes', SizeController::class);
 Route::resource('products', ProductController::class);
 Route::resource('payment-methods', PaymentMethodController::class);
 Route::resource('e-wallet-accounts', EWalletAccountController::class);
+Route::resource('bank-accounts', BankAccountController::class);

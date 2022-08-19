@@ -183,7 +183,7 @@ return [
                 'route' => 'e-wallet-accounts.index',
             ],
             [
-                'title' => 'Create E-Wallet-Account',
+                'title' => 'Create E-Wallet Account',
             ]
         ],
         'edit-e-wallet-account' => [
@@ -192,7 +192,31 @@ return [
                 'route' => 'e-wallet-accounts.index',
             ],
             [
-                'title' => 'Edit E-Wallet-Account',
+                'title' => 'Edit E-Wallet Account',
+            ]
+        ],
+
+        'bank-accounts' => [
+            [
+                'title' => 'Bank Accounts',
+            ],
+        ],
+        'create-bank-account' => [
+            [
+                'title' => 'Bank Accounts',
+                'route' => 'bank-accounts.index',
+            ],
+            [
+                'title' => 'Create Bank Account',
+            ]
+        ],
+        'edit-bank-account' => [
+            [
+                'title' => 'Bank Accounts',
+                'route' => 'bank-accounts.index',
+            ],
+            [
+                'title' => 'Edit Bank Account',
             ]
         ],
     ],
@@ -270,7 +294,13 @@ return [
                         'route' => 'e-wallet-accounts.index',
                         'icon' => 'wallet2',
                         'activeRoute' => 'e-wallet-accounts.*'
-                    ]
+                    ],
+                    [
+                        'title' => 'Bank Accounts',
+                        'route' => 'bank-accounts.index',
+                        'icon' => 'credit-card-fill',
+                        'activeRoute' => 'bank-accounts.*'
+                    ],
                 ]
             ]
         ]

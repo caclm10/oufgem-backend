@@ -19,7 +19,7 @@ class EWalletAccountController extends Controller
      */
     public function index()
     {
-        $eWalletAccounts = EWalletAccount::all();
+        $eWalletAccounts = EWalletAccount::with('paymentMethod')->get();
         return view('ewallet_accounts.index', compact('eWalletAccounts'));
     }
 

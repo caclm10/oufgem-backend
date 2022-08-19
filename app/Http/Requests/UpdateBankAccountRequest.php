@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEWalletAccountRequest extends FormRequest
+class UpdateBankAccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,10 +29,10 @@ class StoreEWalletAccountRequest extends FormRequest
                 'min:3',
                 'max:100'
             ],
-            'phone_number' => [
+            'number' => [
                 'required',
                 'numeric',
-                'digits_between:9,15'
+                'digits_between:10,16'
             ],
             'method' => [
                 'required'
