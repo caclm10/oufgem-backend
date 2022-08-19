@@ -1,15 +1,15 @@
 @extends('layouts.panel')
 
-@section('pageTitle', 'OufGem | Edit E-Wallet')
+@section('pageTitle', 'OufGem | Edit E-Wallet Account')
 
 @section('content')
 
-    <x-header title="Edit E-Wallet" breadcrumb="edit-e-wallet-account" />
+    <x-header title="Edit E-Wallet Account" breadcrumb="edit-e-wallet-account" />
 
 
     <section>
         <x-card>
-            <x-card.header title="E-Wallet Form">
+            <x-card.header title="E-Wallet Account Form">
                 <x-button.delete action="{{ route('e-wallet-accounts.destroy', [$eWalletAccount]) }}"
                     message="Delete this e-wallet account?" />
                 <x-button.save form="update-e-wallet-account-form" />
