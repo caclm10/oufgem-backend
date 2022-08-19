@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PaymentMethod::class)->constrained()->cascadeOnDelete();
-            $table->char('account_number', 16);
+            $table->char('number', 16);
             $table->string('name', 100);
         });
     }

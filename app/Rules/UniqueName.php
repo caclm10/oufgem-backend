@@ -29,12 +29,8 @@ class UniqueName implements InvokableRule
     {
         $query = DB::table($this->table)->whereRaw('LOWER(name) = ?', [str($value)->lower()]);
 
-        if ($this->ignoreID) {
-            $query = $query->where('id', '!=', $this->ignoreID);
-        }
+        if ($this->ignoreID) $query->where('id', '!=', $this->ignoreID);
 
-        if ($query->exists()) {
-            $fail('The name has already been taken');
-        }
+        if ($query->exists()) $fail('The name has already been taken');
     }
 }

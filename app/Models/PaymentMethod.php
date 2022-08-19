@@ -17,11 +17,21 @@ class PaymentMethod extends Model
 
     public function ewallets()
     {
-        return $this->hasMany(EWallet::class);
+        return $this->hasMany(EWalletAccount::class);
     }
 
     public function banks()
     {
-        return $this->hasMany(Bank::class);
+        return $this->hasMany(BankAccount::class);
+    }
+
+    public function scopeEWallet()
+    {
+        return $this->where('type', 'e-wallet');
+    }
+
+    public function scopeBank()
+    {
+        return $this->where('type', 'bank');
     }
 }

@@ -32,6 +32,9 @@ class StoreEWalletAccountRequest extends FormRequest
             'phone_number' => [
                 'required',
                 'numeric'
+            ],
+            'method' => [
+                'required'
             ]
         ];
     }

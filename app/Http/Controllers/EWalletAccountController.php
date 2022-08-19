@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ModelHelper;
+use App\Helpers\PaymentAccountHelper;
 use App\Http\Requests\StoreEWalletAccountRequest;
 use App\Http\Requests\UpdateEWalletAccountRequest;
 use App\Models\EWalletAccount;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class EWalletAccountController extends Controller
@@ -17,8 +19,8 @@ class EWalletAccountController extends Controller
      */
     public function index()
     {
-        $accounts = EWalletAccount::all();
-        return view('ewallet_accounts.index', compact('accounts'));
+        $eWalletAccounts = EWalletAccount::all();
+        return view('ewallet_accounts.index', compact('eWalletAccounts'));
     }
 
     /**
@@ -28,7 +30,8 @@ class EWalletAccountController extends Controller
      */
     public function create()
     {
-        return view('ewallet_accounts.create');
+        $methods = PaymentMethod::eWallet()->get();
+        return view('ewallet_accounts.create', compact('methods'));
     }
 
     /**
@@ -41,54 +44,75 @@ class EWalletAccountController extends Controller
     {
         $input = $request->validated();
 
-        $account = new EWalletAccount($input);
+        if (!PaymentAccountHelper::isUnique('e-wallet', $input)) return customValidate(['account' => 'The account has already been taken.']);
 
-        ModelHelper::save($account);
+        $eWalletAccount = new EWalletAccount([
+            'name' => $input['name'],
+            'phone_number' => $input['phone_number'],
+            'payment_method_id' => $input['method']
+        ]);
+
+        ModelHelper::save($eWalletAccount);
 
         flashCreated('E-Wallet account');
 
-        return to_route('e-wallets.edit', [$account]);
+        return to_route('e-wallet-accounts.edit', [$eWalletAccount]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  EWalletAccount  $account
+     * @param  EWalletAccount  $eWalletAccount
      * @return \Illuminate\Http\Response
      */
-    public function edit(EWalletAccount $account)
+    public function edit(EWalletAccount $eWalletAccount)
     {
-        return view('ewallet_accounts.edit', compact('account'));
+        $methods = PaymentMethod::eWallet()->get();
+        return view('ewallet_accounts.edit', compact('eWalletAccount', 'methods'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  UpdateEWalletAccountRequest  $request
-     * @param  EWalletAccount  $account
+     * @param  EWalletAccount  $eWalletAccount
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEWalletAccountRequest $request, EWalletAccount $account)
+    public function update(UpdateEWalletAccountRequest $request, EWalletAccount $eWalletAccount)
     {
         $input = $request->validated();
 
-        $account->fill($input);
+        if (!PaymentAccountHelper::isUnique('e-wallet', $input, $eWalletAccount->id)) return customValidate(['account' => 'The account has already been taken.']);
 
-        ModelHelper::save($account);
+        $eWalletAccount->fill([
+            'name' => $input['name'],
+            'phone_number' => $input['phone_number'],
+            'payment_method_id' => $input['method']
+        ]);
 
-        flashUpdated('E-Wallet');
+        ModelHelper::save($eWalletAccount);
 
-        return to_route('e-wallets.edit', [$account]);
+        flashUpdated('E-Wallet account');
+
+        return to_route('e-wallet-accounts.edit', [$eWalletAccount]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  EWalletAccount  $account
+     * @param  EWalletAccount  $eWalletAccount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EWalletAccount $account)
+    public function destroy(EWalletAccount $eWalletAccount)
     {
-        //
+        if ($eWalletAccount) {
+            ModelHelper::delete($eWalletAccount);
+
+            flashDeleted('E-Wallet account');
+
+            return to_route('e-wallet-accounts.index');
+        }
+
+        return back();
     }
 }

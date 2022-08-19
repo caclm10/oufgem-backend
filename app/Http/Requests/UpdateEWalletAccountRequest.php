@@ -13,7 +13,7 @@ class UpdateEWalletAccountRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class UpdateEWalletAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                'min:3',
+                'max: 100'
+            ],
+            'phone_number' => [
+                'required',
+                'numeric'
+            ],
+            'method' => [
+                'required'
+            ]
         ];
     }
 }

@@ -17,13 +17,17 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>E-Wallet</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($accounts as $account)
+                        @foreach ($eWalletAccounts as $account)
                             <tr>
                                 <td>{{ $account->name }}</td>
+                                <td>{{ $account->phone_number }}</td>
+                                <td>{{ $account->paymentMethod->name }}</td>
                                 <td>
                                     <x-button.edit href="{{ route('e-wallet-accounts.edit', [$account]) }}" />
                                 </td>
