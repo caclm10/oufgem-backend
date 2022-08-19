@@ -147,6 +147,54 @@ return [
                 'title' => 'Edit Product',
             ]
         ],
+
+        'payment-methods' => [
+            [
+                'title' => 'Payment Methods',
+            ]
+        ],
+        'create-payment-method' => [
+            [
+                'title' => 'Payment Methods',
+                'route' => 'payment-methods.index'
+            ],
+            [
+                'title' => 'Create Payment Method',
+            ]
+        ],
+        'edit-payment-method' => [
+            [
+                'title' => 'Payment Methods',
+                'route' => 'payment-methods.index'
+            ],
+            [
+                'title' => 'Edit Payment Method'
+            ]
+        ],
+
+        'e-wallet-accounts' => [
+            [
+                'title' => 'E-Wallet Accounts',
+            ],
+        ],
+        'create-e-wallet-account' => [
+            [
+                'title' => 'E-Wallet Accounts',
+                'route' => 'e-wallet-accounts.index',
+            ],
+            [
+                'title' => 'Create E-Wallet-Account',
+            ]
+        ],
+        'edit-e-wallet-account' => [
+            [
+                'title' => 'E-Wallet Accounts',
+                'route' => 'e-wallet-accounts.index',
+            ],
+            [
+                'title' => 'Edit E-Wallet-Account',
+            ]
+        ],
     ],
 
     'sidebar' => [
@@ -206,6 +254,23 @@ return [
                         'icon' => 'box-fill',
                         'activeRoute' => 'products.*'
                     ],
+                ]
+            ],
+            [
+                'title' => 'Payments',
+                'items' => [
+                    [
+                        'title' => 'Payment Methods',
+                        'route' => 'payment-methods.index',
+                        'icon' => 'box',
+                        'activeRoute' => 'payment-methods.*'
+                    ],
+                    [
+                        'title' => 'E-Wallet Accounts',
+                        'route' => 'e-wallet-accounts.index',
+                        'icon' => 'wallet2',
+                        'activeRoute' => 'e-wallet-accounts.*'
+                    ]
                 ]
             ]
         ]

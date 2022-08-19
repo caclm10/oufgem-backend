@@ -14,11 +14,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('e_wallet_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PaymentMethod::class)->constrained()->cascadeOnDelete();
-            $table->string('type', 20);
-            $table->char('number', 17);
+            $table->char('phone_number', 15);
+            $table->string('name', 100);
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('e_wallet_accounts');
     }
 };

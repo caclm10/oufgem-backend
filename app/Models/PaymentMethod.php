@@ -9,10 +9,19 @@ class PaymentMethod extends Model
 {
     use HasFactory;
 
+    const METHOD_TYPES = ['e-wallet', 'bank'];
+
     public $timestamps = false;
 
-    public function payments()
+    protected $guarded = ['id'];
+
+    public function ewallets()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(EWallet::class);
+    }
+
+    public function banks()
+    {
+        return $this->hasMany(Bank::class);
     }
 }

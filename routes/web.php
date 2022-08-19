@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryImageController;
+use App\Http\Controllers\EWalletAccountController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductSizeController;
@@ -60,3 +62,5 @@ Route::resource('categories', CategoryController::class);
 Route::resource('types', TypeController::class);
 Route::resource('sizes', SizeController::class);
 Route::resource('products', ProductController::class);
+Route::resource('payment-methods', PaymentMethodController::class);
+Route::resource('e-wallet-accounts', EWalletAccountController::class);
