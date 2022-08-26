@@ -1,20 +1,26 @@
 @extends('layouts.panel')
 
-@section('pageTitle', 'OufGem | Create Size')
+@section('pageTitle', 'OufGem | Create Type')
 
 @section('content')
 
-    <x-header title="Create Size" breadcrumb="create-size" />
+    <x-header title="Create Type" breadcrumb="create-type" />
 
     <section>
         <x-card>
-            <x-card.header title="Size Form">
-                <x-button.save form="create-size-form" />
+            <x-card.header title="Type Form">
+                <x-button.save form="create-type-form" />
             </x-card.header>
 
             <x-card.body>
-                <x-form action="{{ route('sizes.store') }}" id="create-size-form">
+                <x-form action="{{ route('types.store') }}" id="create-type-form">
                     <x-input name="name" label="Name" />
+
+                    <x-select name="category" label="Category">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" @selected(old('category') == $category->id)>{{ $category->name }}</option>
+                        @endforeach
+                    </x-select>
                 </x-form>
             </x-card.body>
         </x-card>

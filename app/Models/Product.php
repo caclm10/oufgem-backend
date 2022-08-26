@@ -23,6 +23,16 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function productImages()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function limitedImages()
+    {
+        return $this->hasOne(ProductImage::class, 'product_id', 'id')->latest();
+    }
+
     public function sizes()
     {
         return $this->hasMany(ProductSize::class);

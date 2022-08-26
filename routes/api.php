@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\v1\CollectionController;
+use App\Http\Controllers\API\V1\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('products', ProductController::class);
+Route::apiResource('categories', CategoryController::class);
+// Route::apiResource('collections', CollectionController::class);
+
+Route::get('/collections/{slug?}', [CollectionController::class, 'index']);

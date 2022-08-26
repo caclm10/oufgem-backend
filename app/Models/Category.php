@@ -20,6 +20,11 @@ class Category extends Model
         return $this->hasMany(Type::class);
     }
 
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, Type::class);
+    }
+
     public function image()
     {
         return $this->hasOne(CategoryImage::class);
